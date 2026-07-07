@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<f:view>
+    <h:head> ATM Ficohsa
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles.css"/>
+    </h:head>
+    <h:body >
+       <h:form>
+        <h2>Cajero Automático - Sesión Activa</h2>
+
+        <p><strong>Bienvenido: #{cajeroBean.usuarioActivo}</strong></p>
+
+        <!-- Muestra el saldo extraído del archivo txt -->
+        <p>Número de cuenta: <strong>#{cajeroBean.cuentaActiva}</strong></p>
+        <p>Tu saldo disponible es: <strong style="color: #80ABE5;">L. #{cajeroBean.saldoActivo}</strong></p>
+
+        <hr/>
+
+        <h3>Simular Retiro</h3>
+        <h:form>
+            <h:outputText value="¿Cuánto deseas retirar?: " />
+            <h:inputText  value="#{cajeroBean.montoRetirar}" title="Monto a retirar" validatorMessage="Por favor, ingresa un monto válido." />
+
+            <!-- Recuerdas el truco de separar botones? Le ponemos un margen -->
+            <h:commandButton value="Confirmar Retiro" action="#{cajeroBean.realizarRetiro}" style="margin-right: 15px;" />
+            <h:commandButton value="Cancelar" action="index?faces-redirect=true" />
+
+            <p><h:outputText value="#{cajeroBean.mensajeError}" style="color:#80ABE5;" /></p>
+        </h:form>
+       </h:form>
+    </h:body>
+</f:view>
+</html>

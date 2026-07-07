@@ -1,0 +1,165 @@
+body {
+   background-color: #0058CB; /* Azul oscuro Ficohsa */
+   color: #FFFFFF;            /* Texto blanco para contrastar */
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 20px;
+   min-height: 100vh;
+}
+
+.contenedor-login {
+   max-width: 400px;
+   margin: 100px auto;
+   padding: 30px;
+   background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil para el formulario */
+   border-radius: 8px;
+   border: 1px solid #80ABE5;                  /* Borde azul claro */
+}
+
+.boton-primario {
+   background-color: #0058CB; /* Azul vibrante institucional */
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   border-radius: 4px;
+   cursor: pointer;
+   font-weight: bold;
+   width: 100%;
+}
+
+.boton-primario:hover {
+   background-color: #0045a3; /* Un tono un poco más oscuro al pasar el mouse */
+}
+/*Prueba logo ficohsa */
+/* Contenedor principal centrado */
+.pantalla-atm {
+   text-align: center;
+   font-family: 'Helvetica Neue', Arial, sans-serif;
+   color: #FFFFFF;
+   max-width: 500px;
+   margin: 0 auto;
+   padding: 40px 20px;
+}
+
+/* Estilos del encabezado (Ficohsa ATM) */
+.header-logo {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   margin-bottom: 35px;
+}
+
+.icono-f {
+   font-size: 42px;
+   font-weight: 900;
+   color: #80ABE5; /* Tono azul claro del logo */
+   transform: skewX(-10deg);
+}
+
+.marca-ficohsa {
+   font-size: 48px;
+   font-weight: bold;
+   letter-spacing: -1px;
+}
+
+.texto-atm {
+   font-size: 36px;
+   font-weight: 300; /* Letra delgada para el "ATM" */
+   margin-left: 10px;
+   letter-spacing: 1px;
+}
+
+/* Estilos del mensaje central */
+.mensaje-retiro {
+   font-size: 18px;
+   font-weight: 400;
+   line-height: 1.5;
+   color: #E0E6ED; /* Blanco ligeramente grisáceo */
+   margin-bottom: 15px;
+}
+
+.resaltado-gratis {
+   font-weight: 900; /* "GRATIS" en negrita gruesa */
+   color: #FFFFFF;
+}
+
+/* Línea horizontal delgada */
+.linea-separadora {
+   border: 0;
+   height: 1px;
+   background-color: rgba(255, 255, 255, 0.4);
+   width: 80%;
+   margin: 20px auto;
+}
+
+/* Contenedor de marcas de tarjetas */
+.logos-tarjetas {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 25px;
+   margin-top: 20px;
+   opacity: 0.9;
+}
+
+/* Tamaños adaptados para los logos */
+.img-tarjeta {
+   height: 60px;
+   width: auto;
+   filter: brightness(1.2); /* Resalta sobre el fondo */
+}
+
+.img-tarjeta-sm {
+   height: 60px;
+   width: auto;
+}
+.logo-principal {
+   height: 200px;
+   width: auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 25px;
+   margin-top: 20px;
+   opacity: 0.9;
+}
+
+.msg-retiro {
+   margin-top: 20px;
+   text-align: center;
+   font-size: 18px;
+   font-weight: 400;
+   background: #E0E6ED;
+   color: #0058CB;
+   height: 40px;
+   width: auto;
+}
+
+/*Style login*/
+.contenedor-login {
+   max-width: 400px;
+   margin: 100px auto;
+   padding: 30px;
+   background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil para el formulario */
+   border-radius: 8px;
+   border: 1px solid #80ABE5;                  /* Borde azul claro */
+}
+
+.boton-primario {
+   background-color: #0058CB; /* Azul vibrante institucional */
+   color: white;
+   border: none;
+   padding: 20px 20px;
+   border-radius: 4px;
+   cursor: pointer;
+   font-weight: bold;
+   width: 40%;
+   margin-right: 15px;
+   margin-left: 15px;
+   margin-bottom: 10px;
+}
+
+.boton-primario:hover {
+   background-color: #0045a3; /* Un tono un poco más oscuro al pasar el mouse */
+}

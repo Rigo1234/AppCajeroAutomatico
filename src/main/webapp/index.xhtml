@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces">
+<f:view>
+    <h:head>
+       <!-- <h:outputStylesheet library="css" name="styles.css" />  -->
+        <title>ATM Ficohsa JSF</title>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles.css"/>
+    </h:head>
+
+    <h:body comment="Prueba de etiqueta">
+        <h:form>
+            <p:growl id="messages"/>
+            <p:progressBar id="progressBarIndeterminate" style="height:6px" mode="indeterminate"/>
+            <div align="center">
+                <h1>Bienvenido a</h1>
+            </div>
+            <!--
+            <div align="center">
+                <img src="#{request.contextPath}/resources/images/Ficohsa_atm.png" alt="Logo"/>
+            </div>
+            -->
+            <div class="pantalla-atm">
+                <!-- Fila del Logo Principal -->
+                <div class="header-logo">
+                    <img src="resources/images/Ficohsa_atm.png" alt="Logo Ficohsa" class="logo-principal"/>
+                </div>
+
+                <!-- Mensaje Central -->
+                <p class="mensaje-retiro">
+                    Retiros <span class="resaltado-gratis">GRATIS</span> con tus <br />
+                    tarjetas de débito Visa Ficohsa
+                </p>
+
+                <!-- Línea Divisoria -->
+                <hr class="linea-separadora" />
+
+                <!-- Logos de Tarjetas Inferiores -->
+                <div class="logos-tarjetas">
+                    <img src="resources/images/mastercard.png" alt="Mastercard" class="img-tarjeta"/>
+                    <img src="resources/images/Cirrus.png" alt="Cirrus" class="img-tarjeta-sm "/>
+                    <img src="resources/images/pluss.png" alt="Plus" class="img-tarjeta-sm"/>
+                    <img src="resources/images/Visa.png" alt="Visa" class="img-tarjeta"/>
+                </div>
+            </div>
+
+            <div class="msg-retiro"  >
+                <h3>Inicia tu retiro sin tarjeta pulsando cualquiera de los botones</h3>
+            </div>
+
+        </h:form>
+
+        <!-- BOTÓN OCULTO CON REDIRECCIÓN LIMPIA (OPCIÓN 2) -->
+        <h:form id="formularioNavegacion" style="display:none;">
+            <h:commandButton id="botonOculto" action="login?faces-redirect=true" />
+        </h:form>
+
+        <!-- Captura de teclado -->
+        <script type="text/javascript">
+            document.addEventListener('keydown', function(event) {
+                event.preventDefault();
+                var boton = document.getElementById('formularioNavegacion:botonOculto');
+                if (boton) {
+                    boton.click();
+                }
+            });
+        </script>
+
+    </h:body>
+    <div class="footer">
+        <p:growl id="messages"/>
+        <p:progressBar id="progressBarIndeterminate" style="height:6px" mode="indeterminate"/>
+        <p>Aplicativo de pruebas de la tecnología JSF con la librería de Primefaces corriendo en un servidor de aplicaciones Tomcat v11.0.15</p>
+        <p>&#169; 2026 Banco Ficohsa. Todos los derechos reservados.</p>
+    </div>
+</f:view>
+</html>
