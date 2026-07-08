@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>FicoRED - Historial de Movimientos</title>
+    <h:outputStylesheet name="css/styles2.css" />
+</h:head>
+
+<h:body styleClass="atm-body">
+
+    <h:form id="formHistorial">
+        <div class="atm-container" style="max-width: 900px;">
+            <div class="atm-header">Fico<span class="atm-header-red">RED</span></div>
+            <div class="atm-title">Historial de Transacciones</div>
+            <p style="margin-top: -15px; color: #EAEAEA;">
+                Usuario: #{cajeroBean.usuarioActivo}
+            </p>
+            <p style="margin-top: -15px; color: #EAEAEA;">
+                Cuenta: #{cajeroBean.cuentaActiva}
+            </p>
+
+            <p:dataTable  value="#{cajeroBean.movimientosPorUsuario}"
+                         var="movimiento"
+                         rows="5"
+                         paginator="true"
+                         paginatorPosition="bottom"
+                         emptyMessage="No hay movimientos disponibles."
+                         style="margin-top: 20px;">
+
+                 <p:column headerText="Fecha de Transaccion | Tipo Operación | Monto"
+                           styleClass="historial-style" style="text-align: center">
+                    <h:outputText  value="#{movimiento}"  />
+                </p:column>
+
+            </p:dataTable>
+
+            <p:commandButton value="Salir"
+                             action="index?faces-redirect=true"
+                             styleClass="atm-button"
+                             style="margin-top: 25px; max-width: 300px;"/>
+        </div>
+    </h:form>
+
+</h:body>
+</html>

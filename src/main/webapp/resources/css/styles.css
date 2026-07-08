@@ -1,5 +1,6 @@
 body {
-   background-color: #0058CB; /* Azul oscuro Ficohsa */
+   /*background-color: #0058CB; / Azul oscuro Ficohsa */
+   background: linear-gradient(180deg, #004B87 0%, #002F6C 100%);
    color: #FFFFFF;            /* Texto blanco para contrastar */
    font-family: Arial, sans-serif;
    margin: 0;
@@ -30,45 +31,6 @@ body {
 .boton-primario:hover {
    background-color: #0045a3; /* Un tono un poco más oscuro al pasar el mouse */
 }
-/*Prueba logo ficohsa */
-/* Contenedor principal centrado */
-.pantalla-atm {
-   text-align: center;
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   color: #FFFFFF;
-   max-width: 500px;
-   margin: 0 auto;
-   padding: 40px 20px;
-}
-
-/* Estilos del encabezado (Ficohsa ATM) */
-.header-logo {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 10px;
-   margin-bottom: 35px;
-}
-
-.icono-f {
-   font-size: 42px;
-   font-weight: 900;
-   color: #80ABE5; /* Tono azul claro del logo */
-   transform: skewX(-10deg);
-}
-
-.marca-ficohsa {
-   font-size: 48px;
-   font-weight: bold;
-   letter-spacing: -1px;
-}
-
-.texto-atm {
-   font-size: 36px;
-   font-weight: 300; /* Letra delgada para el "ATM" */
-   margin-left: 10px;
-   letter-spacing: 1px;
-}
 
 /* Estilos del mensaje central */
 .mensaje-retiro {
@@ -76,6 +38,7 @@ body {
    font-weight: 400;
    line-height: 1.5;
    color: #E0E6ED; /* Blanco ligeramente grisáceo */
+   margin-top: 50px;
    margin-bottom: 15px;
 }
 
@@ -105,7 +68,7 @@ body {
 
 /* Tamaños adaptados para los logos */
 .img-tarjeta {
-   height: 60px;
+   height: 40px;
    width: auto;
    filter: brightness(1.2); /* Resalta sobre el fondo */
 }
@@ -114,19 +77,10 @@ body {
    height: 60px;
    width: auto;
 }
-.logo-principal {
-   height: 200px;
-   width: auto;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 25px;
-   margin-top: 20px;
-   opacity: 0.9;
-}
+
 
 .msg-retiro {
-   margin-top: 20px;
+   margin-top: 30px;
    text-align: center;
    font-size: 18px;
    font-weight: 400;
