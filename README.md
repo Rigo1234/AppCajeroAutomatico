@@ -10,12 +10,12 @@ Nota: Para nuestro proyecto decidimos hacer uso de la interfas de los cajeros de
 El aplicativo tiene una pantalla de inicio que simula la pantalla prinicpal de espera en los cajeros Ficosha antes de ingresar la tarjeta y funciona de la siguiente manera:
 
 <h4>Paso 1</h4>
-El usuario debera presionar cualquier tecla para poder acceder a la pantalla del login.
+El usuario debera presionar cualquier tecla para poder acceder a la pantalla del login.<br>
 <img width="500" height="300" alt="Captura de pantalla 2026-07-09 111351" src="https://github.com/user-attachments/assets/9719ab34-4b19-41c9-8724-947c85f21a5d" />
 
 
 <h4>Paso 2</h4>
-El usuario accedera a una pantalla de login mediante la cual debera ingresar su usuario y pin asociado a dicho usuario, la app realiza las respectivas validaciones, que tanto el usuario y pin/contraseñ sean los correctos y que los campos no esten bacios, para realizar dichas validaciones previamente creamos un archivo .txt el cual contiene los datos de usurio que simulara n la base de datos.
+El usuario accedera a una pantalla de login mediante la cual debera ingresar su usuario y pin asociado a dicho usuario, la app realiza las respectivas validaciones, que tanto el usuario y pin/contraseñ sean los correctos y que los campos no esten bacios, para realizar dichas validaciones previamente creamos un archivo .txt el cual contiene los datos de usurio que simulara n la base de datos.<br>
 <img width="500" height="300" alt="Captura de pantalla 2026-07-09 111424" src="https://github.com/user-attachments/assets/d56dcaa9-c801-4845-bc93-ff1582711c8a" />
 
 
@@ -53,7 +53,7 @@ Si el archivo no existe el metodo lo crea asignandole el nombre combinando el us
 
 
 <h4>Historial</h4>
-Si el usuario elige esta opcion se nos diige hacia una pantalla en lo cual se nos muestra el historial de las transacciones realizadas por dicho usuario en caso de no encontrar se nos mostrara un mensaje indicandonos que no tenemos transacciones para dicho usurio.
+Si el usuario elige esta opcion se nos diige hacia una pantalla en lo cual se nos muestra el historial de las transacciones realizadas por dicho usuario en caso de no encontrar se nos mostrara un mensaje indicandonos que no tenemos transacciones para dicho usurio.<br>
 <img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/3f78cc69-d440-4a25-91a4-e733056fa897" />
 
 <h4>Como funciona?</h4>
