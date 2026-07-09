@@ -7,33 +7,45 @@
 <f:view>
     <h:head>
         <title>ATM Ficohsa JSF</title>
-        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles2.css"/>
     </h:head>
-    <h:body >
-       <h:form>
-        <h2>Cajero Automático - Sesión Activa</h2>
+    <h:body styleClass="atm-body">
 
-        <p><strong>Bienvenido: #{cajeroBean.usuarioActivo}</strong></p>
+        <h:form id="formCajero">
+            <p:messages id="mensajes" showDetail="true" closable="true" />
 
-        <!-- Muestra el saldo extraído del archivo txt -->
-        <p>Número de cuenta: <strong>#{cajeroBean.cuentaActiva}</strong></p>
-        <p>Tu saldo disponible es: <strong style="color: #80ABE5;">L. #{cajeroBean.saldoActivo}</strong></p>
+            <div class="atm-container">
+                <div class="atm-header">Fico<span class="atm-header-red">RED</span></div>
 
-        <hr/>
+                <div class="atm-subtitle" style="margin-top: 20px">Sesión Activa</div>
+                    <h:form  >
 
-        <h3>Simular Retiro</h3>
-        <h:form>
-            <h:outputText value="¿Cuánto deseas depositar?: " />
-            <h:inputText  value="#{cajeroBean.montoDepositar}" title="Monto a depositar" validatorMessage="Por favor, ingresa un monto válido." />
-            <p:messages id="messages" showDetail="true" closable="true" />
-            <!-- Recuerdas el truco de separar botones? Le ponemos un margen -->
-            <h:commandButton value="Confirmar deposito" action="#{cajeroBean.realizarDeposito}" style="margin-right: 15px;"/>
+                    <p><strong>Usuario: #{cajeroBean.usuarioActivo}</strong></p>
 
-            <h:commandButton value="Cancelar" action="#{cajeroBean.indexNav}" style="margin-right: 15px;" />
+                    <!-- Muestra el saldo extraído del archivo txt -->
+                    <p>Número de cuenta: <strong>#{cajeroBean.cuentaActiva}</strong></p>
+                    <p>Tu saldo disponible es: <strong style="color: #80ABE5;">L. #{cajeroBean.saldoActivo}</strong></p>
+                <h3>Simular Deposito</h3>
+                <h:form>
+                    <h:outputText value="¿Cuánto deseas depositar?: L." />
+                    <p:focus for="montoInput" />
+                    <h:inputText id="montoInput" value="#{cajeroBean.montoDepositar}" title="Monto a depositar"
+                                 onfocus="this.setSelectionRange(0, 0);" validatorMessage="Por favor, ingresa un monto válido." />
+                    <p:messages id="messages" showDetail="true" closable="true" />
 
-            <p><h:outputText value="#{cajeroBean.mensajeError}" style="color:#80ABE5;" /></p>
-        </h:form>
-       </h:form>
-    </h:body>
-</f:view>
-</html>
+                    <h:commandButton value="Confirmar Deposito" action="#{cajeroBean.realizarDeposito}" style="margin-right: 15px; margin-top: 25px"/>
+
+                    <h:commandButton value="Cancelar" action="#{cajeroBean.indexNav}" style="margin-right: 15px;" />
+
+                    <p><h:outputText value="#{cajeroBean.mensajeError}" style="color:#80ABE5;" /></p>
+                </h:form>
+
+
+                </h:form>
+             </div>
+
+         </h:form>
+
+     </h:body>
+ </f:view>
+ </html>

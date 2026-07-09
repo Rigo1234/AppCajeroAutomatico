@@ -62,6 +62,23 @@
     background: #EAEAEA !important;
 }
 
+.atm-button2 {
+    width: 35% !important;
+    height: 55px !important;
+    background: #747373 !important;
+    color: #002F6C !important;
+    font-size: 22px !important;
+    font-weight: bold !important;
+    border: 2px solid #A0A0A0 !important;
+    border-radius: 5px !important;
+    margin: 10px 0px !important;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3) !important;
+}
+
+.atm-button2:hover {
+    background: #EAEAEA !important;
+}
+
 .historial-style{
     background: #E0E6ED;
     font-size: 16px;

@@ -15,9 +15,9 @@
             <p:messages id="mensajes" showDetail="true" closable="true" />
 
             <div class="atm-container">
-                <div class="atm-header">Fico<span class="atm-header-red">RED</span></div>
+                <div class="atm-header"><h3>Fico<span class="atm-header-red">RED</span></h3></div>
 
-                <div class="atm-title">Consulta de Saldo</div>
+                <div class="atm-title" style="margin-top: 20px">Consulta de Saldo</div>
                 <div class="atm-subtitle">Sesión Activa</div>
                     <h:form  >
                         <!-- Muestra los datos extraídos del archivo txt -->
@@ -26,7 +26,10 @@
                     <p>Tu saldo disponible es: <strong style="color: #80ABE5;">L. #{cajeroBean.saldoActivo}</strong></p>
 
                     </h:form>
-                <p:commandButton value="Salir" styleClass="boton-primario" action="index?faces-redirect=true" />
+                <p:commandButton value="Salir"
+                                 action="index?faces-redirect=true"
+                                 styleClass="atm-button"
+                                 style="margin-top: 25px; max-width: 150px;"/>
              </div>
          </h:form>
 

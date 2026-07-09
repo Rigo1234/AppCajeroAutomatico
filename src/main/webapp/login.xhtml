@@ -9,6 +9,7 @@
 <h:head>
     <title>ATM Ficohsa JSF</title>
     <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles2.css"/>
 </h:head>
 
 <f:metadata>
@@ -17,15 +18,18 @@
 
 <h:body>
     <h:form>
+
     <div class="contenedor-login">
-        <h2>Ingrese sus datos</h2>
+        <h2 >Fico<span class="atm-header-red">RED</span></h2>
+        <h3>Bienvenido</h3>
+        <h4>Ingrese sus datos</h4>
 
         <h:form>
             <h:panelGrid align="center" columns="1" styleClass="panel-grid-login">
-                <h:outputText value="Usuario:" />
+                <h:outputText value="Usuario: " />
                 <h:inputText value="#{cajeroBean.usuarioIngresado}" />
 
-                <h5><p:outputLabel for="@next" value="Pin Secreto"/></h5>
+                <h5><p:outputLabel for="@next" value="Pin/Contraseña: "/></h5>
                 <p:password id="toggle" value="#{cajeroBean.contrasenaIngresada}" toggleMask="true" redisplay="true" />
 
             </h:panelGrid>
