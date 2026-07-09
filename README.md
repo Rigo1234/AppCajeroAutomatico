@@ -25,17 +25,17 @@ mediante las validaciones del login accedemos a nuestro archivo, el cual recorre
 Si encuentra coinicidencias nos dirige hacia el menu de opciones.
 
 <h4>Paso 3</h4>
-Una vez pasamos a nuestro menu de opciones asignamos valores a variable previamente creadas, estas serian usuarioActivo, saldoActivo, para poder trabajar con estos valores segun la opcion seleccionada.
+Una vez pasamos a nuestro menu de opciones asignamos valores a variable previamente creadas, estas serian usuarioActivo, saldoActivo, para poder trabajar con estos valores segun la opcion seleccionada.<br>
 <img width="500" height="300" alt="Captura de pantalla 2026-07-09 111449" src="https://github.com/user-attachments/assets/41cfe6d7-75a0-4e72-9b2c-2eaf402cd579" />
 
 
 <h4>Consulta Saldo</h4>
-Al elegir esta opcion se nos mostrara una pantalla enl que e nos mostrar nuestros datos de usuario como ser: Usuario, Cuenta y el Saldo actual en nuestra cuenta, se agrego un boton para regresar a la pantalla principal.
+Al elegir esta opcion se nos mostrara una pantalla enl que e nos mostrar nuestros datos de usuario como ser: Usuario, Cuenta y el Saldo actual en nuestra cuenta, se agrego un boton para regresar a la pantalla principal.<br>
 <img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/fcb8c564-afdb-4281-9b78-2054deed0ee1" />
 
 
 <h4>Retiro/Deposito</h4>
-Si elegimos una e estas 2 opciones seremos dirigigos hacia una pantalla donde tendremos opciones de retiro/deposito ya definidas y tambien una opcion mas donde el usuario podra ingresar la cantidad que desea retitar/depositar el registro de cada movimiento se realiza en un archivo personalizado para cada usurio.
+Si elegimos una e estas 2 opciones seremos dirigigos hacia una pantalla donde tendremos opciones de retiro/deposito ya definidas y tambien una opcion mas donde el usuario podra ingresar la cantidad que desea retitar/depositar el registro de cada movimiento se realiza en un archivo personalizado para cada usurio.<br>
 <img width="500" height="300" alt="Captura de pantalla 2026-07-09 111523" src="https://github.com/user-attachments/assets/642a899c-82e4-4aa3-adca-b596aecb3120" />
 
 
