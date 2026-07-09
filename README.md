@@ -1,6 +1,6 @@
-App estudiantil que simula un cajero automatico y sus funciones basicas
+<h3>App estudiantil que simula un cajero automatico y sus funciones basicas</h3>
 
-Objetivo Especifico
+<h2><b>Objetivo Especifico</b></h2>
 El obejetivo de la creacion de este proyecto es el poner en practica los conocimientos adquiridos en clase, asi como tambien el incentivar a explorar las diferentes herramientas que se nos ha nproporcionada, para de esta forma lograr crear app que cumplan ademas con suproposito, que sean amigables y agradables al usuario.
 
 
@@ -11,12 +11,12 @@ El aplicativo tiene una pantalla de inicio que simula la pantalla prinicpal de e
 
 Paso 1
 El usuario debera presionar cualquier tecla para poder acceder a la pantalla del login.
-<img width="640" height="600" alt="Captura de pantalla 2026-07-09 111351" src="https://github.com/user-attachments/assets/9719ab34-4b19-41c9-8724-947c85f21a5d" />
+<img width="500" height="300" alt="Captura de pantalla 2026-07-09 111351" src="https://github.com/user-attachments/assets/9719ab34-4b19-41c9-8724-947c85f21a5d" />
 
 
 Paso 2
 El usuario accedera a una pantalla de login mediante la cual debera ingresar su usuario y pin asociado a dicho usuario, la app realiza las respectivas validaciones, que tanto el usuario y pin/contraseñ sean los correctos y que los campos no esten bacios, para realizar dichas validaciones previamente creamos un archivo .txt el cual contiene los datos de usurio que simulara n la base de datos.
-<img width="846" height="607" alt="Captura de pantalla 2026-07-09 111424" src="https://github.com/user-attachments/assets/d56dcaa9-c801-4845-bc93-ff1582711c8a" />
+<img width="500" height="300" alt="Captura de pantalla 2026-07-09 111424" src="https://github.com/user-attachments/assets/d56dcaa9-c801-4845-bc93-ff1582711c8a" />
 
 
 Login, como funciona?
@@ -26,17 +26,17 @@ Si encuentra coinicidencias nos dirige hacia el menu de opciones.
 
 Paso 3
 Una vez pasamos a nuestro menu de opciones asignamos valores a variable previamente creadas, estas serian usuarioActivo, saldoActivo, para poder trabajar con estos valores segun la opcion seleccionada.
-<img width="914" height="491" alt="Captura de pantalla 2026-07-09 111449" src="https://github.com/user-attachments/assets/41cfe6d7-75a0-4e72-9b2c-2eaf402cd579" />
+<img width="500" height="300" alt="Captura de pantalla 2026-07-09 111449" src="https://github.com/user-attachments/assets/41cfe6d7-75a0-4e72-9b2c-2eaf402cd579" />
 
 
 Consulta Saldo
 Al elegir esta opcion se nos mostrara una pantalla enl que e nos mostrar nuestros datos de usuario como ser: Usuario, Cuenta y el Saldo actual en nuestra cuenta, se agrego un boton para regresar a la pantalla principal.
-<img width="877" height="403" alt="image" src="https://github.com/user-attachments/assets/fcb8c564-afdb-4281-9b78-2054deed0ee1" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/fcb8c564-afdb-4281-9b78-2054deed0ee1" />
 
 
 Retiro/Deposito
 Si elegimos una e estas 2 opciones seremos dirigigos hacia una pantalla donde tendremos opciones de retiro/deposito ya definidas y tambien una opcion mas donde el usuario podra ingresar la cantidad que desea retitar/depositar el registro de cada movimiento se realiza en un archivo personalizado para cada usurio.
-<img width="915" height="460" alt="Captura de pantalla 2026-07-09 111523" src="https://github.com/user-attachments/assets/642a899c-82e4-4aa3-adca-b596aecb3120" />
+<img width="500" height="300" alt="Captura de pantalla 2026-07-09 111523" src="https://github.com/user-attachments/assets/642a899c-82e4-4aa3-adca-b596aecb3120" />
 
 
 Como funciona?
@@ -48,13 +48,13 @@ En esta pantalla de confirmacion se nos muestran el usurio y el saldo disponible
 Una vez  validada la operacion se nos dirige hacia una pantalla donde se nos mostra nuestro usuario y nuestro aldo actualizado, despues de la resta/suma segun sea el caso, para actulizar los datos de la cuenta se realiza mediante el metodo actualizarUsuarioTxt() el cual almacena los datos.
 
 Registro de movimientos en el archivo "usuario1234.txt"
-Una vez realizadas las validaciones del login y elegir una de las 2 opciones transaccionales (retiro/deposito), si confirmamos la transaccion se ejecutara un metodo llamado registarMovimiento() mediante el cual almacenamos de la siguiente manera fecha,tipo de transaccion, monto.
+Una vez realizadas las validaciones del login y elegir una de las 2 opciones transaccionales (retiro/deposito), si confirmamos la transaccion se ejecutara un metodo llamado registarMovimiento() mediante el cual almacenamos de la siguiente manera fechaHora,tipo de transaccion, monto.
 Si el archivo no existe el metodo lo crea asignandole el nombre combinando el usuario y la cuenta, seguidamente almacena la transaccion. Si el archivo ya exite solamente agrega la transaccion al final de el archivo.
 
 
 Historial
 Si el usuario elige esta opcion se nos diige hacia una pantalla en lo cual se nos muestra el historial de las transacciones realizadas por dicho usuario en caso de no encontrar se nos mostrara un mensaje indicandonos que no tenemos transacciones para dicho usurio.
-<img width="901" height="690" alt="image" src="https://github.com/user-attachments/assets/3f78cc69-d440-4a25-91a4-e733056fa897" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/3f78cc69-d440-4a25-91a4-e733056fa897" />
 
 Como funciona?
 Mediante un metodo llamado getMovimientosPorUsuario recorremos el archivo ocrrespondiente al usaurio seleccionado, extraemo los datos linea por linea y los mostramos en una pantalla llamada historial, en caso de no haber registro de transacciones, se mostrara en pantalla que no hay registro de movimientos para dicho usuario.
