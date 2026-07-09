@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <h:head>
+        <title>ATM Ficohsa JSF</title>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles2.css"/>
+    </h:head>
+    <h:body styleClass="atm-body">
+
+        <h:form id="formCajero">
+            <p:messages id="mensajes" showDetail="true" closable="true" />
+
+            <div class="atm-container">
+                <div class="atm-header">Fico<span class="atm-header-red">RED</span></div>
+
+                <p class="atm-title">Seleccione una Opcion</p>
+
+                <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank">
+
+                    <p:commandButton value="Consulta de Saldo" styleClass="atm-button"
+                                     action="consultarSaldo?faces-redirect=true">
+                    </p:commandButton>
+
+                    <p:commandButton value="Retiro Rapido" styleClass="atm-button"
+                                     action="menuRetiro?faces-redirect=true">
+
+                    </p:commandButton>
+
+                    <p:commandButton value="Depositos" styleClass="atm-button"
+                                     action="menuDeposito?faces-redirect=true" >
+                    </p:commandButton>
+
+                    <p:commandButton value="Ultimos Movimientos" styleClass="atm-button"
+                                     action="historial?faces-redirect=true">
+                    </p:commandButton>
+
+
+                </p:panelGrid>
+            </div>
+
+            <p:remoteCommand name="ejecutarSegundo"
+                             action="#{miBean.metodoDos()}"
+                             update="mensajes" />
+        </h:form>
+
+    </h:body>
+</f:view>
+</html>

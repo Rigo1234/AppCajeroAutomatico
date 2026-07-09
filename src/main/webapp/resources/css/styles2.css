@@ -1,0 +1,70 @@
+/* Fondo azul oscuro del cajero */
+.atm-body {
+    background-color: #333333; /* Fondo gris exterior simulando la máquina */
+}
+
+.atm-container {
+    background: linear-gradient(180deg, #004B87 0%, #002F6C 100%);
+    color: #FFFFFF;
+    font-family: 'Arial', sans-serif;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 850px;
+    margin: 50px auto;
+    text-align: center;
+    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
+}
+
+.atm-header {
+    font-size: 28px;
+    font-weight: bold;
+    color: #00A3E0; /* Celeste de FicoRED */
+    margin-bottom: 5px;
+}
+
+.atm-header-red {
+    color: #E4002B; /* Rojo de FicoRED */
+}
+
+.atm-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.atm-subtitle {
+    font-size: 18px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+}
+
+/* Quitar bordes y fondos por defecto de la grilla de PrimeFaces */
+.ui-panelgrid.ui-panelgrid-blank .ui-panelgrid-content {
+    background: none !important;
+    border: none !important;
+}
+
+/* Estilo personalizado para simular los botones del cajero */
+.atm-button {
+    width: 100% !important;
+    height: 55px !important;
+    background: #747373 !important;
+    color: #002F6C !important;
+    font-size: 22px !important;
+    font-weight: bold !important;
+    border: 2px solid #A0A0A0 !important;
+    border-radius: 5px !important;
+    margin: 10px 0px !important;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3) !important;
+}
+
+.atm-button:hover {
+    background: #EAEAEA !important;
+}
+
+.historial-style{
+    background: #E0E6ED;
+    font-size: 16px;
+    font-weight: bold;
+    color: #002F6C;
+}

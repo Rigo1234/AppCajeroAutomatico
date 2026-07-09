@@ -3,7 +3,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>ATM Ficohsa JSF</title>
@@ -16,16 +17,18 @@
         <h2>Ingrese sus datos</h2>
 
         <h:form>
-            <h:panelGrid columns="2">
+            <h:panelGrid align="center" columns="1" styleClass="panel-grid-login">
                 <h:outputText value="Usuario:" />
                 <h:inputText value="#{cajeroBean.usuarioIngresado}" />
 
-                <h:outputText value="PIN secreto:" />
-                <h:inputSecret value="#{cajeroBean.contrasenaIngresada}" />
+                <h5><p:outputLabel for="@next" value="Pin Secreto"/></h5>
+                <p:password id="toggle" value="#{cajeroBean.contrasenaIngresada}" toggleMask="true" redisplay="true" />
+
             </h:panelGrid>
 
+
             <h:commandButton value="Ingresar" action="#{cajeroBean.iniciarSesion}" styleClass="boton-primario" />
-            <h:commandButton value="Cancelar" action="index?faces-redirect=true" styleClass="boton-primario" />
+            <h:commandButton value="Cancelar" action="#{cajeroBean.indexNav}" styleClass="boton-primario" />
 
             <!-- Muestra errores en rojo si fallan las credenciales -->
             <h:outputText value="#{cajeroBean.mensajeError}" style="color:red; display:block; margin-top:10px;" />

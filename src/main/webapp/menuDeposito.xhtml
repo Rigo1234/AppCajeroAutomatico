@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <h:head>
+        <title>ATM Ficohsa JSF</title>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles2.css"/>
+    </h:head>
+    <h:body styleClass="atm-body">
+
+        <h:form id="formCajero">
+            <p:messages id="mensajes" showDetail="true" closable="true" />
+
+            <div class="atm-container">
+                <div class="atm-header">Fico<span class="atm-header-red">RED</span></div>
+
+                <div class="atm-title">Deposito</div>
+                <p class="atm-subtitle">Seleccione el monto que desea depositar</p>
+
+                <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank">
+
+                    <p:commandButton value="100.00" styleClass="atm-button"
+                                     action="deposito?faces-redirect=true">
+                        <f:setPropertyActionListener value="100" target="#{cajeroBean.montoDepositar}" />
+                    </p:commandButton>
+
+                    <p:commandButton value="1,000.00" styleClass="atm-button"
+                                     action="deposito?faces-redirect=true" >
+                        <f:setPropertyActionListener value="1000" target="#{cajeroBean.montoDepositar}" />
+                    </p:commandButton>
+
+                    <p:commandButton value="200.00" styleClass="atm-button"
+                                     action="deposito?faces-redirect=true" >
+                        <f:setPropertyActionListener value="200" target="#{cajeroBean.montoDepositar}" />
+                    </p:commandButton>
+
+                    <p:commandButton value="1,500.00" styleClass="atm-button"
+                                     action="deposito?faces-redirect=true" >
+                        <f:setPropertyActionListener value="1500" target="#{cajeroBean.montoDepositar}" />
+                    </p:commandButton>
+
+                    <p:commandButton value="300.00" styleClass="atm-button"
+                                     action="deposito?faces-redirect=true" >
+                        <f:setPropertyActionListener value="300" target="#{cajeroBean.montoDepositar}" />
+                    </p:commandButton>
+
+                    <p:commandButton value="2,000.00" styleClass="atm-button"
+                                     action="deposito?faces-redirect=true" >
+                        <f:setPropertyActionListener value="2000" target="#{cajeroBean.montoDepositar}" />
+                    </p:commandButton>
+
+                    <p:commandButton value="500.00" styleClass="atm-button"
+                                     action="deposito?faces-redirect=true">
+                        <f:setPropertyActionListener value="500" target="#{cajeroBean.montoDepositar}" />
+                    </p:commandButton>
+
+                    <p:commandButton value="Otro Monto" styleClass="atm-button"
+                                     action="deposito?faces-redirect=true">
+                        <f:setPropertyActionListener value="" target="#{cajeroBean.montoDepositar}" />
+                    </p:commandButton>
+
+                </p:panelGrid>
+            </div>
+
+            <p:remoteCommand name="ejecutarSegundo"
+                             action="#{cajeroBean.metodoDos()}"
+                             update="mensajes" />
+        </h:form>
+
+    </h:body>
+</f:view>
+</html>
