@@ -14,7 +14,7 @@ import java.util.List;
 @SessionScoped // Mantiene los datos del usuario activos durante toda su navegación
 public class CajeroBean implements Serializable {
 
-    // Ruta del archivo .txt donde se almacenan los datos de los usuarios
+    // Ruta del archivo .txt donde se almacenan los datos de los usuarios/transacciones
     private static final String RUTA_ARCHIVO = "C:\\Users\\sevil\\Documents\\II Periodo UTH 2026\\Programacion Web II\\Proyectos Clase\\AppCajeroAutomatico\\src\\main\\webapp\\resources\\cajero-logs\\usuarios.txt";
     private static final String CARPETA_LOGS = "C:\\Users\\sevil\\Documents\\II Periodo UTH 2026\\Programacion Web II\\Proyectos Clase\\AppCajeroAutomatico\\src\\main\\webapp\\resources\\cajero-logs\\";
 
@@ -22,25 +22,28 @@ public class CajeroBean implements Serializable {
     private String usuarioIngresado;
     private String contrasenaIngresada;
 
-    // Datos del usuario que inició sesión
+    //Datos del usuario que inició sesión - Una vez validado el login
     private String usuarioActivo;
     private int cuentaActiva;
     private double saldoActivo;
+    
+    
     private boolean logueado = false;
 
     // Variable para capturar cuánto quiere retirar/deposiar
     private double montoRetirar;
     private double montoDepositar;
-    //validaciones
+    
+    //Variable  para las validaciones
     private String mensajeError;
 
 
     // Validación de Sesión (Login)
     public String iniciarSesion() {
-        //Validar primero que el usuario no haya dejado los campos vacíos en la pantalla
+        //Validar primero que el usuario no haya dejado los campos vacios en la pantalla
         if (usuarioIngresado == null || usuarioIngresado.trim().isEmpty() ||
                 contrasenaIngresada == null || contrasenaIngresada.trim().isEmpty()) {
-            this.mensajeError = "Por favor, ingrese usuario y PIN.";
+            this.mensajeError = "Por favor, ingrese Usuario y PIN.";
             return null;
         }
 
@@ -48,28 +51,32 @@ public class CajeroBean implements Serializable {
             String linea;
             while ((linea = br.readLine()) != null) {
                 // Saltamos líneas vacías para que no rompan el programa
+                //Esto se agrego ya que cuando se encontaba datos en una fila o no estaban completos el programa devolvia error
                 if (linea.trim().isEmpty()) {
                     continue;
                 }
 
                 String[] datos = linea.split(",");
 
-                // 🚨 PROTECCIÓN CRÍTICA: Validamos que la línea tenga los 4 datos requeridos
+                //Validamos que la línea tenga los 4 datos requeridos
                 if (datos.length < 4) {
                     System.out.println("Línea ignorada por formato incorrecto: " + linea);
                     continue; // Salta a la siguiente línea en lugar de romper el programa
                 }
-
+                
+                //Captura de datos de el archivo usurios.txt
                 String user = datos[0].trim();
                 String pass = datos[1].trim();
 
                 try {
+                    //Captura de datos de el archivo usurios.txt
                     // Protegemos la conversión de números por si el archivo tiene texto donde no debe
                     int cuenta = Integer.parseInt(datos[2].trim());
                     double saldo = Double.parseDouble(datos[3].trim());
 
                     // Validamos credenciales
                     if (user.equals(usuarioIngresado.trim()) && pass.equals(contrasenaIngresada.trim())) {
+                        //Asignamos valores de nuestro txt a las variables para manejar los datos
                         this.usuarioActivo = user;
                         this.cuentaActiva = cuenta;
                         this.saldoActivo = saldo;
@@ -83,11 +90,10 @@ public class CajeroBean implements Serializable {
                     }
                 } catch (NumberFormatException nfe) {
                     System.out.println("Error de formato numérico en la línea: " + linea);
-                    // Si una fila está corrupta, el programa no muere, solo sigue buscando en las demás
                 }
             }
 
-            // Si recorrió todo el archivo y no encontró coincidencia
+            // Si no se encuentran coincidencias
             this.mensajeError = "Usuario o PIN incorrectos.";
 
         } catch (IOException e) {
@@ -120,20 +126,22 @@ public class CajeroBean implements Serializable {
         this.saldoActivo -= montoRetirar;
         this.mensajeError = "Retiro exitoso. ¡Retire su dinero!";
 
-        //Guardamos la transacción en el TXT exclusivo de este usuario
+        //Guardamos la transacción en el txt exclusivo de este usuario
         registrarMovimiento(cuentaActiva, "****RETIRO*****", montoRetirar,usuarioActivo);
+        
         // Guardamos el nuevo saldo físicamente en el archivo .txt
-        actualizarArchivoTxt();
+        actualizarUsuariosTxt();
 
 
         // limpiar datos de campos y formularios
         limpiarCampos();
-        //Ir a siguiente pantalla ***pendiente configurar***
-        consultarSaldo();
+        //Ir a siguiente pantalla
+        operacionExitosa();
     }
 
     //Operación de Deposito
     public void realizarDeposito() {
+        //validaciones
         if (montoDepositar <= 0) {
             this.mensajeError = "Monto inválido.";
             return;
@@ -147,22 +155,24 @@ public class CajeroBean implements Serializable {
         this.saldoActivo += montoDepositar;
         this.mensajeError = "Deposito exitoso. ¡Gracias por confiar en nosotros!";
 
-        //Guardamos la transacción en el TXT exclusivo de este usuario
+        //Guardamos la transacción en el txt exclusivo de este usuario
         registrarMovimiento(cuentaActiva, "***DEPOSITO***", montoDepositar, usuarioActivo);
+
         // Guardamos el nuevo saldo físicamente en el archivo .txt
-        actualizarArchivoTxt();
+        actualizarUsuariosTxt();
 
 
         // limpiar datos de campos y formularios
         limpiarCampos();
         //Ir a siguiente pantalla
-        consultarSaldo();
+        operacionExitosa();
     }
 
     private void registrarMovimiento(int cuenta, String tipoOperacion, Double monto, String usuario) {
+        //Aqui capturamos la fecha y hora de la transaccion
         String fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
-        // Estructura de la línea: FECHA_HORA | TIPO | MONTO
+        // Estructura del archivo: FECHA_HORA | TIPO | MONTO
         String lineaRegistro = String.format("%s | %s | L. %.2f", fechaHora, tipoOperacion, monto);
 
         // Nombre de archivo dinámico por usuario
@@ -180,7 +190,7 @@ public class CajeroBean implements Serializable {
     }
 
     //Guardar cambios en el archivo .txt
-    private void actualizarArchivoTxt() {
+    private void actualizarUsuariosTxt() {
         File archivoOriginal = new File(RUTA_ARCHIVO);
         File archivoTemporal = new File(RUTA_ARCHIVO + ".tmp");
 
@@ -212,7 +222,7 @@ public class CajeroBean implements Serializable {
     public List<String> getMovimientosPorUsuario() {
         List<String> historial = new ArrayList<>();
 
-        // Construimos la ruta exacta del archivo del usuario actual
+        // Ruta exacta del archivo del usuario actual
         String rutaArchivo = CARPETA_LOGS + usuarioActivo + this.cuentaActiva + ".txt";
         File archivo = new File(rutaArchivo);
 
@@ -253,16 +263,11 @@ public class CajeroBean implements Serializable {
     public void indexNav(){
         //¡Redirigir al index!
         FacesContext context = FacesContext.getCurrentInstance();
-
-        // Le indicamos que vaya al index de forma limpia
         context.getApplication().getNavigationHandler().handleNavigation(context, null, "index?faces-redirect=true");
     }
 
-    public void consultarSaldo(){
-        //¡Redirigir al index!
+    public void operacionExitosa(){
         FacesContext context = FacesContext.getCurrentInstance();
-
-        // Le indicamos que vaya al index de forma limpia
         context.getApplication().getNavigationHandler().handleNavigation(context, null, "operacionExitosa?faces-redirect=true");
     }
 
