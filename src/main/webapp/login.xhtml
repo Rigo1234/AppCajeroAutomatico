@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="#{request.contextPath}/resources/css/styles.css"/>
 </h:head>
 
+<f:metadata>
+    <f:viewAction action="#{cajeroBean.limpiarCampos}" />
+</f:metadata>
+
 <h:body>
     <h:form>
     <div class="contenedor-login">
@@ -27,7 +31,7 @@
             </h:panelGrid>
 
 
-            <h:commandButton value="Ingresar" action="#{cajeroBean.iniciarSesion}" styleClass="boton-primario" />
+            <h:commandButton value="Ingresar" action="#{cajeroBean.iniciarSesion}" styleClass="boton-primario"  style="margin-top: 10px;"/>
             <h:commandButton value="Cancelar" action="#{cajeroBean.indexNav}" styleClass="boton-primario" />
 
             <!-- Muestra errores en rojo si fallan las credenciales -->

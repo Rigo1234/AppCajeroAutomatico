@@ -31,38 +31,70 @@ public class CajeroBean implements Serializable {
     // Variable para capturar cuánto quiere retirar/deposiar
     private double montoRetirar;
     private double montoDepositar;
+    //validaciones
     private String mensajeError;
 
-    // --- MÉTODOS DE OPERACIÓN ---
 
     // Validación de Sesión (Login)
     public String iniciarSesion() {
+        //Validar primero que el usuario no haya dejado los campos vacíos en la pantalla
+        if (usuarioIngresado == null || usuarioIngresado.trim().isEmpty() ||
+                contrasenaIngresada == null || contrasenaIngresada.trim().isEmpty()) {
+            this.mensajeError = "Por favor, ingrese usuario y PIN.";
+            return null;
+        }
+
         try (BufferedReader br = new BufferedReader(new FileReader(RUTA_ARCHIVO))) {
             String linea;
             while ((linea = br.readLine()) != null) {
+                // Saltamos líneas vacías para que no rompan el programa
+                if (linea.trim().isEmpty()) {
+                    continue;
+                }
+
                 String[] datos = linea.split(",");
-                String user = datos[0];
-                String pass = datos[1];
-                int cuenta = Integer.parseInt(datos[2]);
-                double saldo = Double.parseDouble(datos[3]);
 
-                // Validamos credenciales
-                if (user.equals(usuarioIngresado) && pass.equals(contrasenaIngresada)) {
-                    this.usuarioActivo = user;
-                    this.cuentaActiva = cuenta;
-                    this.saldoActivo = saldo;
-                    this.logueado = true;
-                    this.mensajeError = null;
+                // 🚨 PROTECCIÓN CRÍTICA: Validamos que la línea tenga los 4 datos requeridos
+                if (datos.length < 4) {
+                    System.out.println("Línea ignorada por formato incorrecto: " + linea);
+                    continue; // Salta a la siguiente línea en lugar de romper el programa
+                }
 
-                    // Redirige al menú principal del ATM
-                    return "menuOpciones?faces-redirect=true";
+                String user = datos[0].trim();
+                String pass = datos[1].trim();
+
+                try {
+                    // Protegemos la conversión de números por si el archivo tiene texto donde no debe
+                    int cuenta = Integer.parseInt(datos[2].trim());
+                    double saldo = Double.parseDouble(datos[3].trim());
+
+                    // Validamos credenciales
+                    if (user.equals(usuarioIngresado.trim()) && pass.equals(contrasenaIngresada.trim())) {
+                        this.usuarioActivo = user;
+                        this.cuentaActiva = cuenta;
+                        this.saldoActivo = saldo;
+                        this.logueado = true;
+                        this.mensajeError = null;
+
+                        // Redirige al menú principal del ATM
+                        return "menuOpciones?faces-redirect=true";
+
+
+                    }
+                } catch (NumberFormatException nfe) {
+                    System.out.println("Error de formato numérico en la línea: " + linea);
+                    // Si una fila está corrupta, el programa no muere, solo sigue buscando en las demás
                 }
             }
+
+            // Si recorrió todo el archivo y no encontró coincidencia
             this.mensajeError = "Usuario o PIN incorrectos.";
+
         } catch (IOException e) {
             this.mensajeError = "Error al conectar con el sistema del cajero.";
             e.printStackTrace();
         }
+
         return null; // Si falla, se queda en el login mostrando el error
     }
 
@@ -213,6 +245,7 @@ public class CajeroBean implements Serializable {
         this.montoDepositar = 0;
         this.usuarioIngresado = "";
         this.contrasenaIngresada = "";
+        this.logueado = false;
         this.mensajeError = null; // Limpia también los mensajes de error/éxito
 
     }
@@ -232,6 +265,7 @@ public class CajeroBean implements Serializable {
         // Le indicamos que vaya al index de forma limpia
         context.getApplication().getNavigationHandler().handleNavigation(context, null, "operacionExitosa?faces-redirect=true");
     }
+
 
     // --- GETTERS Y SETTERS ---
     public String getUsuarioIngresado() { return usuarioIngresado; }

@@ -12,7 +12,7 @@ body {
    max-width: 400px;
    margin: 100px auto;
    padding: 30px;
-   background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil para el formulario */
+   background-color: rgb(56 141 251); /* Fondo sutil para el formulario */
    border-radius: 8px;
    border: 1px solid #80ABE5;                  /* Borde azul claro */
 }
@@ -88,16 +88,6 @@ body {
    color: #0058CB;
    height: 40px;
    width: auto;
-}
-
-/*Style login*/
-.contenedor-login {
-   max-width: 400px;
-   margin: 100px auto;
-   padding: 30px;
-   background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil para el formulario */
-   border-radius: 8px;
-   border: 1px solid #80ABE5;                  /* Borde azul claro */
 }
 
 .boton-primario {
