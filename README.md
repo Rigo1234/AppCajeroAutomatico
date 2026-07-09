@@ -3,6 +3,18 @@
 <h2><b>Objetivo Especifico</b></h2>
 El obejetivo de la creacion de este proyecto es el poner en practica los conocimientos adquiridos en clase, asi como tambien el incentivar a explorar las diferentes herramientas que se nos ha nproporcionada, para de esta forma lograr crear app que cumplan ademas con suproposito, que sean amigables y agradables al usuario.
 
+<h4>Datos de Prueba</h4>
+<table>
+  <tr>
+    <td>Usuario</td><td>Pin</td><td>Cuenta</td><td>Saldo</td>
+  </tr>
+  <tr>
+    <td>rraudales</td><td>2017</td><td>20160709</td><td>50000</td>
+  </tr>
+  <tr>
+    <td>maria77</td><td>9989</td><td>20160708</td><td>20100</td>
+  </tr>
+</table>
 
 Nota: Para nuestro proyecto decidimos hacer uso de la interfas de los cajeros del banco Ficohsa.
 
