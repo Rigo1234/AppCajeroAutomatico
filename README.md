@@ -11,7 +11,7 @@ El aplicativo tiene una pantalla de inicio que simula la pantalla prinicpal de e
 
 Paso 1
 El usuario debera presionar cualquier tecla para poder acceder a la pantalla del login.
-<img width="1007" height="755" alt="Captura de pantalla 2026-07-09 111351" src="https://github.com/user-attachments/assets/9719ab34-4b19-41c9-8724-947c85f21a5d" />
+<img width="640" height="600" alt="Captura de pantalla 2026-07-09 111351" src="https://github.com/user-attachments/assets/9719ab34-4b19-41c9-8724-947c85f21a5d" />
 
 
 Paso 2
