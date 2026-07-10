@@ -16,7 +16,7 @@
 </f:metadata>
 
 <h:body>
-    <h:form>
+    <h:form id="form-login">
 
     <div class="contenedor-login">
         <h2 >Fico<span class="atm-header-red">RED</span></h2>
@@ -25,20 +25,29 @@
 
         <h:form>
             <h:panelGrid align="center" columns="1" styleClass="panel-grid-login">
-                <h:outputText value="Usuario: " />
-                <h:inputText value="#{cajeroBean.usuarioIngresado}" />
+                <h:outputText for="usuario" value="Usuario: " />
+                <p:inputText id="usuario" value="#{cajeroBean.usuarioIngresado}"
+                             required="true" requiredMessage=" El usuario es obligatorio"/>
 
-                <h5><p:outputLabel for="@next" value="Pin/Contraseña: "/></h5>
-                <p:password id="toggle" value="#{cajeroBean.contrasenaIngresada}" toggleMask="true" redisplay="true" />
+                <h5><p:outputLabel for="pin" value="Pin/Contraseña: "/></h5>
+                <p:password id="pin" value="#{cajeroBean.contrasenaIngresada}" toggleMask="true"
+                            redisplay="true" required="true" requiredMessage="La contraseña es obligatoria"/>
 
             </h:panelGrid>
 
 
-            <h:commandButton value="Ingresar" action="#{cajeroBean.iniciarSesion}" styleClass="boton-primario"  style="margin-top: 10px;"/>
-            <h:commandButton value="Cancelar" action="#{cajeroBean.indexNav}" styleClass="boton-primario" />
+            <h:commandButton value="Ingresar" action="#{cajeroBean.iniciarSesion}"
+                             update="msjLogin" styleClass="boton-primario"  style="margin-top: 10px;"/>
+            <h:commandButton value="Cancelar" action="#{cajeroBean.indexNav}"
+                             immediate="true"
+                             process="@this"
+                             update="@form" styleClass="boton-primario" />
 
-            <!-- Muestra errores en rojo si fallan las credenciales -->
-            <h:outputText value="#{cajeroBean.mensajeError}" style="color:red; display:block; margin-top:10px;" />
+            <!-- Muestra errores en rojo si fallan las credenciales-->
+            <div style="width: 300px; margin: 15px auto 0 auto;">
+                <p:messages id="msjLogin" globalOnly="false" showDetail="false" closable="false" />
+            </div>
+
         </h:form>
     </div>
     </h:form>

@@ -12,13 +12,12 @@
     <h:body styleClass="atm-body">
 
         <h:form id="formCajero">
-            <p:messages id="mensajes" showDetail="true" closable="true" />
 
             <div class="atm-container">
                 <div class="atm-header">Fico<span class="atm-header-red">RED</span></div>
 
                 <div class="atm-subtitle" style="margin-top: 20px">Sesión Activa</div>
-                    <h:form  >
+                    <h:form id="form-login">
 
                     <p><strong>Usuario: #{cajeroBean.usuarioActivo}</strong></p>
                     <p>Número de cuenta: <strong>#{cajeroBean.cuentaActiva}</strong></p>
@@ -26,17 +25,32 @@
 
                 <h3>Simular Deposito</h3>
                 <h:form>
-                    <h:outputText value="¿Cuánto deseas depositar?: L." />
+                    <h:outputText value="¿Cuánto deseas depositar?: L.  " />
                     <p:focus for="montoInput" />
-                    <h:inputText id="montoInput" value="#{cajeroBean.montoDepositar}" title="Monto a depositar"
-                                 onfocus="this.setSelectionRange(0, 0);" validatorMessage="Por favor, ingresa un monto válido." />
-                    <p:messages id="messages" showDetail="true" closable="true" />
 
-                    <h:commandButton value="Confirmar Deposito" action="#{cajeroBean.realizarDeposito}" style="margin-right: 15px; margin-top: 25px"/>
+                    <p:inputNumber id="montoInput"
+                                   value="#{cajeroBean.montoDepositar}" emptyValue="empty"
+                                   required="true" onfocus="this.setSelectionRange(0, 0);"
+                                   requiredMessage="¡El monto es obligatorio para depositar!">
 
-                    <h:commandButton value="Cancelar" action="#{cajeroBean.indexNav}" style="margin-right: 15px;" />
+                        <f:validateDoubleRange minimum="100" />
 
-                    <p><h:outputText value="#{cajeroBean.mensajeError}" style="color:#80ABE5;" /></p>
+                    </p:inputNumber>
+                    <br/>
+
+                    <h:commandButton value="Confirmar Deposito" action="#{cajeroBean.realizarDeposito}"
+                                     update="msj" style="margin-right: 15px; margin-top: 25px"/>
+
+                    <h:commandButton value="Cancelar" action="#{cajeroBean.indexNav}"
+                                     immediate="true"
+                                     process="@this"
+                                     update="@form" style="margin-right: 15px;" />
+
+                    <!-- Muestra validacion de monto-->
+                    <div style="width: 600px; margin: 15px auto 0 auto;">
+                        <p:messages id="msjLogin" globalOnly="false" showDetail="true" closable="false" />
+                    </div>
+
                 </h:form>
 
 

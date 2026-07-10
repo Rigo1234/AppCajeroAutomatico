@@ -1,6 +1,7 @@
 package uth.hn.appcajeroautomatico.beans;
 
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import java.io.*;
@@ -33,9 +34,6 @@ public class CajeroBean implements Serializable {
     // Variable para capturar cuánto quiere retirar/deposiar
     private double montoRetirar;
     private double montoDepositar;
-    
-    //Variable  para las validaciones
-    private String mensajeError;
 
 
     // Validación de Sesión (Login)
@@ -43,7 +41,10 @@ public class CajeroBean implements Serializable {
         //Validar primero que el usuario no haya dejado los campos vacios en la pantalla
         if (usuarioIngresado == null || usuarioIngresado.trim().isEmpty() ||
                 contrasenaIngresada == null || contrasenaIngresada.trim().isEmpty()) {
-            this.mensajeError = "Por favor, ingrese Usuario y PIN.";
+
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getFlash().setKeepMessages(true);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Ingrese usuario y pin"));
             return null;
         }
 
@@ -51,7 +52,7 @@ public class CajeroBean implements Serializable {
             String linea;
             while ((linea = br.readLine()) != null) {
                 // Saltamos líneas vacías para que no rompan el programa
-                //Esto se agrego ya que cuando se encontaba datos en una fila o no estaban completos el programa devolvia error
+                //Esto se agrego ya que cuando no se encontaba datos en una fila o no estaban completos el programa devolvia error
                 if (linea.trim().isEmpty()) {
                     continue;
                 }
@@ -64,12 +65,12 @@ public class CajeroBean implements Serializable {
                     continue; // Salta a la siguiente línea en lugar de romper el programa
                 }
                 
-                //Captura de datos de el archivo usurios.txt
+                //Captura de datos del archivo usurios.txt
                 String user = datos[0].trim();
                 String pass = datos[1].trim();
 
                 try {
-                    //Captura de datos de el archivo usurios.txt
+                    //Captura de datos del archivo usurios.txt
                     // Protegemos la conversión de números por si el archivo tiene texto donde no debe
                     int cuenta = Integer.parseInt(datos[2].trim());
                     double saldo = Double.parseDouble(datos[3].trim());
@@ -81,7 +82,6 @@ public class CajeroBean implements Serializable {
                         this.cuentaActiva = cuenta;
                         this.saldoActivo = saldo;
                         this.logueado = true;
-                        this.mensajeError = null;
 
                         // Redirige al menú principal del ATM
                         return "menuOpciones?faces-redirect=true";
@@ -94,10 +94,13 @@ public class CajeroBean implements Serializable {
             }
 
             // Si no se encuentran coincidencias
-            this.mensajeError = "Usuario o PIN incorrectos.";
-
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getFlash().setKeepMessages(true);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o Pin incorrectos", "Favor ingresar datos validos"));
         } catch (IOException e) {
-            this.mensajeError = "Error al conectar con el sistema del cajero.";
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getFlash().setKeepMessages(true);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Fallo de Autenticacion"));
             e.printStackTrace();
         }
 
@@ -108,23 +111,31 @@ public class CajeroBean implements Serializable {
     public void realizarRetiro() {
         //validaciones
         if (montoRetirar <= 0) {
-            this.mensajeError = "Monto inválido.";
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getFlash().setKeepMessages(true);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Ingrese un monto valido"));
             return;
         }
 
         if (montoRetirar%100 !=0) {
-            this.mensajeError = "\"El monto a retirar debe ser 100 o múltiplo de 100 (Ej: 100, 200, 500).";
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getFlash().setKeepMessages(true);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "El monto a retirar debe ser 100 o múltiplo de 100 (Ej: 100, 200, 500)"));
             return;
         }
 
         if (montoRetirar > saldoActivo) {
-            this.mensajeError = "Fondos insuficientes.";
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getFlash().setKeepMessages(true);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Fondos Insuficientes"));
             return;
         }
 
         // Restamos el dinero localmente
         this.saldoActivo -= montoRetirar;
-        this.mensajeError = "Retiro exitoso. ¡Retire su dinero!";
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Retiro Exitoso", " Favor retire su dinero!"));
 
         //Guardamos la transacción en el txt exclusivo de este usuario
         registrarMovimiento(cuentaActiva, "****RETIRO*****", montoRetirar,usuarioActivo);
@@ -142,18 +153,19 @@ public class CajeroBean implements Serializable {
     //Operación de Deposito
     public void realizarDeposito() {
         //validaciones
-        if (montoDepositar <= 0) {
-            this.mensajeError = "Monto inválido.";
-            return;
-        }
         if (montoDepositar%100 !=0) {
-            this.mensajeError = "\"El monto a depositar debe ser 100 o múltiplo de 100 (Ej: 100, 200, 500).";
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getFlash().setKeepMessages(true);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "El monto a depositar debe ser 100 o múltiplo de 100 (Ej: 100, 200, 500)."));
             return;
         }
 
         // Sumamos el dinero localmente
         this.saldoActivo += montoDepositar;
-        this.mensajeError = "Deposito exitoso. ¡Gracias por confiar en nosotros!";
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Gracias por confiar en nosotros. ", " "));
+
 
         //Guardamos la transacción en el txt exclusivo de este usuario
         registrarMovimiento(cuentaActiva, "***DEPOSITO***", montoDepositar, usuarioActivo);
@@ -249,6 +261,7 @@ public class CajeroBean implements Serializable {
         return historial;
     }
 
+
     public void limpiarCampos() {
         // Restablecemos todas las variables y formulario del login
         this.montoRetirar = 0;
@@ -256,7 +269,6 @@ public class CajeroBean implements Serializable {
         this.usuarioIngresado = "";
         this.contrasenaIngresada = "";
         this.logueado = false;
-        this.mensajeError = null; // Limpia también los mensajes de error/éxito
 
     }
 
@@ -283,7 +295,6 @@ public class CajeroBean implements Serializable {
     public void setMontoRetirar(double montoRetirar) { this.montoRetirar = montoRetirar; }
     public double getMontoDepositar() { return montoDepositar; }
     public void setMontoDepositar(double montoDepositar) { this.montoDepositar = montoDepositar; }
-    public String getMensajeError() { return mensajeError; }
     public int getCuentaActiva() {
         return cuentaActiva;
     }
