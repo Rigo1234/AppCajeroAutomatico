@@ -1,5 +1,27 @@
 <h3>App estudiantil que simula un cajero automatico y sus funciones basicas</h3>
 
+<h4>Integrantes</h4>
+<table>
+  <tr>
+    <td>Nombre</td><td>Cuenta</td>
+  </tr>
+  <tr>
+    <td>Jennifer Mariela Marquez</td><td>202330010411</td>
+  </tr>
+  <tr>
+    <td>Paola Abigail Peña Hernandez</td><td>202330080046</td>
+  </tr>
+  <tr>
+    <td>Marlon Benjamin Matute </td><td>20232010387</td>
+  </tr>
+  <tr>
+    <td>Juan David Rivera Aguilera</td><td>202410060777</td>
+  </tr>
+  <tr>
+    <td>Rigoberto Raudales Sevilla</td><td>201730010089</td>
+  </tr>
+</table>
+
 <h2><b>Objetivo Especifico</b></h2>
 El obejetivo de la creacion de este proyecto es el poner en practica los conocimientos adquiridos en clase, asi como tambien el incentivar a explorar las diferentes herramientas que se nos ha nproporcionada, para de esta forma lograr crear app que cumplan ademas con suproposito, que sean amigables y agradables al usuario.
 
@@ -9,11 +31,21 @@ El obejetivo de la creacion de este proyecto es el poner en practica los conocim
     <td>Usuario</td><td>Pin</td><td>Cuenta</td><td>Saldo</td>
   </tr>
   <tr>
-    <td>rraudales</td><td>2017</td><td>20160709</td><td>50000</td>
+    <td>juan123</td><td>4321</td><td>20260706</td><td>4800.15</td>
   </tr>
   <tr>
-    <td>maria77</td><td>9989</td><td>20160708</td><td>20100</td>
+    <td>maria77</td><td>9988</td><td>20260707</td><td>15600.51</td>
   </tr>
+  <tr>
+    <td>carlos89</td><td>1111</td><td>20260708</td><td>850.25</td>
+  </tr>
+  <tr>
+    <td>rraudales</td><td>2017</td><td>20260709</td><td>50800.75</td>
+  </tr>
+  <tr>
+    <td>alejandra21</td><td>4567</td><td>20260710</td><td>27350.85</td>
+  </tr>
+  
 </table>
 
 Nota: Para nuestro proyecto decidimos hacer uso de la interfas de los cajeros del banco Ficohsa.
